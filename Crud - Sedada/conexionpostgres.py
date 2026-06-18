@@ -1,0 +1,25 @@
+import psycopg2
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+def conectar():
+
+    try:
+
+        conexion = psycopg2.connect(
+            host=os.getenv("HOST"),
+            database=os.getenv("DATABASE"),
+            user=os.getenv("USER"),
+            password=os.getenv("PASSWORD"),
+            port=os.getenv("PORT")
+        )
+
+        return conexion
+
+    except Exception as e:
+
+        print("Error de conexión:", e)
+
+        return None
